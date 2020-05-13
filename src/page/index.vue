@@ -2,16 +2,10 @@
 <el-container direction="vertical">
 <header-nav></header-nav>
   <el-main>
-    <el-row type="flex" class="row-bg" justify="center">
-      <el-col :span="16">
-        <div class="grid-content">
           <el-row>
             <el-col :span="16"><article-content></article-content></el-col>
             <el-col :span="8"><right-menu></right-menu></el-col>
           </el-row>
-        </div>
-      </el-col>
-    </el-row>
   </el-main>
   </el-container>
 </template>

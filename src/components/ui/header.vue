@@ -41,4 +41,7 @@ export default {
   .el-menu-demo .el-menu-item{
     font-size: 16px !important;
   }
+  .el-header{
+    padding: 0 !important;
+  }
 </style>

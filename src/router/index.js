@@ -3,8 +3,9 @@ import Router from 'vue-router'
 import Index from '../page/index'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+import Test from '../page/test'
 
 Vue.use(ElementUI);
 Vue.use(VueAxios, axios)
@@ -16,6 +17,10 @@ export default new Router({
       path: '/',
       name: 'Index',
       component: Index
+    }, {
+      path: '/test',
+      name: 'Test',
+      component: Test
     }
   ]
 })
