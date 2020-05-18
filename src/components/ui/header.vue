@@ -1,7 +1,7 @@
 <template>
   <el-header>
   <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-        <el-menu-item index="1" class="logo">这里放logo拉</el-menu-item>
+        <el-menu-item index="1" class="logo"><img :src="logo" style="width: 135px;height: 30px"></el-menu-item>
     <el-submenu index="3" class="tab">
       <template slot="title">我的工作台</template>
       <el-menu-item index="3-1">选项1</el-menu-item>
@@ -15,9 +15,11 @@
   </el-header>
 </template>
 <script>
+import logo from '../../assets/logo1.png'
 export default {
   data () {
     return {
+      logo: logo,
       activeIndex: '2'
     }
   },

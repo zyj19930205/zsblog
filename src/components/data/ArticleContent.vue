@@ -48,8 +48,8 @@ export default {
         },
         {
           id: 2,
-          articleTitle: '今天中午吃啥呢',
-          articleAbstract: '这是一个关于今天中午吃啥的帖子，纯属灌水，请勿回复',
+          articleTitle: '邹宇杰的工作相关账号信息',
+          articleAbstract: '堡垒机账号：******,号卡系统账号密码：**********,********',
           articleMeta: '无'
         },
         {
