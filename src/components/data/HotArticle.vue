@@ -20,7 +20,7 @@
 <style type="text/css" scoped>
   .writer-list{
     width: 300px;
-    margin-left: 50px;
+    margin-left: 20px;
     font-size: 14px;
   }
   .text ul{

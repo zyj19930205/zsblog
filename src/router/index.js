@@ -6,8 +6,9 @@ import VueAxios from 'vue-axios'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import Test from '../page/test'
+import articleView from '../page/article/articleView'
 
-Vue.use(ElementUI);
+Vue.use(ElementUI)
 Vue.use(VueAxios, axios)
 Vue.use(Router)
 
@@ -21,6 +22,10 @@ export default new Router({
       path: '/test',
       name: 'Test',
       component: Test
+    }, {
+      path: '/articleView',
+      name: 'articleView',
+      component: articleView
     }
   ]
 })

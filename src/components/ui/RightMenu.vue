@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="block" style="width: 300px;margin-left: 50px;margin-bottom: 10px">
+    <div class="block" style="width: 300px;margin-left: 20px;margin-bottom: 10px">
       <el-image :src="src"></el-image>
     </div>
-    <el-input placeholder="根据关键字查文章" v-model="input3" class="input-with-select" style=" width: 300px;margin-left: 50px;margin-bottom: 10px">
+    <el-input placeholder="根据关键字查文章" v-model="input3" class="input-with-select" style=" width: 300px;margin-left: 20px;margin-bottom: 10px">
       <el-button slot="append" icon="el-icon-search" ></el-button>
     </el-input>
     <hot-article></hot-article>

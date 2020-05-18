@@ -11,7 +11,6 @@
             <el-row>
               <el-col :span="14" offset="2"><article-content></article-content></el-col>
               <el-col :span="8"><right-menu></right-menu>
-
               </el-col>
 
             </el-row>

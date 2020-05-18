@@ -6,9 +6,13 @@
       <ul>
         <li v-for="article in articles">
           <div class="title">
+            <span v-if="article.recommend" class="bj">荐</span>
             {{article.articleTitle}}
           </div>
-          <div class="abstract">{{article.articleAbstract}}</div>
+          <div class="abstract">
+
+            {{article.articleAbstract}}
+          </div>
 
           <div class="ArticleMeta">
             <article-meta></article-meta>
@@ -44,31 +48,36 @@ export default {
           id: 1,
           articleTitle: '今天中午吃啥呢',
           articleAbstract: '这是一个关于今天中午吃啥的帖子，纯属灌水，请勿回复',
-          articleMeta: '无'
+          articleMeta: '无',
+          recommend: false
         },
         {
           id: 2,
           articleTitle: '邹宇杰的工作相关账号信息',
           articleAbstract: '堡垒机账号：******,号卡系统账号密码：**********,********',
-          articleMeta: '无'
+          articleMeta: '无',
+          recommend: false
         },
         {
           id: 3,
           articleTitle: '今天中午吃啥呢',
           articleAbstract: '这是一个关于今天中午吃啥的帖子，纯属灌水，请勿回复',
-          articleMeta: '无'
+          articleMeta: '无',
+          recommend: true
         },
         {
           id: 4,
           articleTitle: '今天中午吃啥呢',
           articleAbstract: '这是一个关于今天中午吃啥的帖子，纯属灌水，请勿回复',
-          articleMeta: '无'
+          articleMeta: '无',
+          recommend: true
         },
         {
           id: 5,
           articleTitle: '今天中午吃啥呢',
           articleAbstract: '这是一个关于今天中午吃啥的帖子，纯属灌水，请勿回复',
-          articleMeta: '无'
+          articleMeta: '无',
+          recommend: true
         }
       ]
     }
@@ -108,5 +117,20 @@ export default {
   }
   .el-divider--horizontal{
     margin:15px 0 !important;
+  }
+  .bj{
+    display: inline-block;
+    width: 24px;
+    height: 23px;
+    border-radius: 4px;
+    border: 1px solid #ca0c16;
+    font-size: 14px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-weight: 500;
+    text-align: center;
+    color: #ca0c16;
+    line-height: 23px;
+    margin-right: 4px;
   }
 </style>
