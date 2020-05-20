@@ -7,11 +7,10 @@
         <li v-for="article in articles">
           <div class="title">
             <span v-if="article.recommend" class="bj">荐</span>
-            {{article.articleTitle}}
+            {{article.title}}
           </div>
-          <div class="abstract">
-
-            {{article.articleAbstract}}
+          <div class="abstract" @click="getArticle(article.id)">
+            {{deleteHtmlTag(article.content)}}
           </div>
 
           <div class="ArticleMeta">
@@ -43,43 +42,31 @@ export default {
   },
   data () {
     return {
-      articles: [
-        {
-          id: 1,
-          articleTitle: '今天中午吃啥呢',
-          articleAbstract: '这是一个关于今天中午吃啥的帖子，纯属灌水，请勿回复',
-          articleMeta: '无',
-          recommend: false
-        },
-        {
-          id: 2,
-          articleTitle: '邹宇杰的工作相关账号信息',
-          articleAbstract: '堡垒机账号：******,号卡系统账号密码：**********,********',
-          articleMeta: '无',
-          recommend: false
-        },
-        {
-          id: 3,
-          articleTitle: '今天中午吃啥呢',
-          articleAbstract: '这是一个关于今天中午吃啥的帖子，纯属灌水，请勿回复',
-          articleMeta: '无',
-          recommend: true
-        },
-        {
-          id: 4,
-          articleTitle: '今天中午吃啥呢',
-          articleAbstract: '这是一个关于今天中午吃啥的帖子，纯属灌水，请勿回复',
-          articleMeta: '无',
-          recommend: true
-        },
-        {
-          id: 5,
-          articleTitle: '今天中午吃啥呢',
-          articleAbstract: '这是一个关于今天中午吃啥的帖子，纯属灌水，请勿回复',
-          articleMeta: '无',
-          recommend: true
+      articles: []
+    }
+  },
+  created () {
+    this.axios.get('http://localhost:8081/article').then((response) => {
+      console.log(response.data)
+      this.articles = response.data
+    }).catch(function (err) {
+      console.log(err)
+    })
+  },
+  methods: {
+    deleteHtmlTag (str) {
+      if (str.length > 100) {
+        return str.replace(/<[^>]+>/g, '').substring(0, 100) + '.....'
+      }
+      return str.replace(/<[^>]+>/g, '')
+    },
+    getArticle (id) {
+      this.$router.push({
+        path: '/articleView',
+        query: {
+          id: id
         }
-      ]
+      })
     }
   }
 }
@@ -132,5 +119,8 @@ export default {
     color: #ca0c16;
     line-height: 23px;
     margin-right: 4px;
+  }
+  .abstract {
+    cursor: pointer;
   }
 </style>
