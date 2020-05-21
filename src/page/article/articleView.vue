@@ -43,7 +43,7 @@ export default {
       content: '',
       aid: '',
       authorInfo: {
-        authorName: '贾谊',
+        authorName: '',
         star: 12
       }
     }
@@ -53,13 +53,14 @@ export default {
     this.axios.get('http://localhost:8081/article/' + this.aid).then((response) => {
       this.title = response.data.title
       this.content = response.data.content
+      this.authorInfo.authorName = response.data.nickname
     }).catch(function (err) {
       console.log(err)
     })
   }
 }
 </script>
-<style>
+<style type="text/css" scoped>
   .title{
     font-size: 24px;
     font-weight: bold;

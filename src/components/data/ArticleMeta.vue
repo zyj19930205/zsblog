@@ -4,7 +4,7 @@
           <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" style="width: 24px;height: 24px"></el-avatar>
        </div>
     <div class="tipInfo">
-      <div class="small-meta" style="float: left">{{author}}</div>
+      <div class="small-meta" style="float: left">{{authorName}}</div>
       <div style="float: right" class="small-meta"><i  class="el-icon-star-on icon-style"></i>{{watchIt}} </div>
       <div style="float: right" class="small-meta"><i class="el-icon-chat-round icon-style"></i>{{tips}}</div>
       <div style="float: right" class="small-meta"><i class="el-icon-milk-tea icon-style"></i>12</div>
@@ -13,6 +13,8 @@
 </template>
 <script>
 export default {
+
+  props: ['authorName'],
   data () {
     return {
       author: '邹宇杰',
