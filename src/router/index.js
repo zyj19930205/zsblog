@@ -7,6 +7,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import Index from '../page/index'
 import articleView from '../page/article/articleView'
 import addArticle from '../page/article/addArticle'
+import login from '../page/login'
 
 Vue.use(ElementUI)
 Vue.use(VueAxios, axios)
@@ -26,6 +27,10 @@ export default new Router({
       path: '/addArticle',
       name: 'addArticle',
       component: addArticle
+    }, {
+      path: '/login',
+      name: 'login',
+      component: login
     }
   ]
 })

@@ -11,7 +11,10 @@
         <el-menu-item index="2" class="tab">消息</el-menu-item>
         <el-menu-item index="3" class="tab">工具箱</el-menu-item>
         <el-menu-item index="4" class="tab">热点</el-menu-item>
+        <el-menu-item  class="tab"> <el-button type="danger" @click="writeArticle" size="small">写文章</el-button></el-menu-item>
+
   </el-menu>
+
   </el-header>
 </template>
 <script>
@@ -26,6 +29,9 @@ export default {
   methods: {
     handleSelect (key, keyPath) {
       console.log(key, keyPath)
+    },
+    writeArticle () {
+      this.$router.push('addArticle')
     }
   }
 }
