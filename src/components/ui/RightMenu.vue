@@ -1,11 +1,13 @@
 <template>
   <div>
-    <div class="block" style="width: 300px;margin-left: 20px;margin-bottom: 10px">
-      <el-image :src="src"></el-image>
-    </div>
     <el-input placeholder="根据关键字查文章" v-model="input3" class="input-with-select" style=" width: 300px;margin-left: 20px;margin-bottom: 10px">
       <el-button slot="append" icon="el-icon-search" ></el-button>
     </el-input>
+
+    <user-info></user-info>
+<!--    <div class="block" style="width: 300px;margin-left: 20px;margin-bottom: 10px">-->
+<!--      <el-image :src="src"></el-image>-->
+<!--    </div>-->
     <hot-article></hot-article>
     <hot-tags></hot-tags>
   </div>
@@ -14,9 +16,10 @@
 import HotTags from '../data/HotTags'
 import HotArticle from '../data/HotArticle'
 import jxlt from '../../assets/jxlt.jpg'
+import userInfo from '../ui/UserInfo'
 export default {
   components: {
-    HotTags, HotArticle
+    HotTags, HotArticle, userInfo
   },
   data () {
     return {
@@ -25,18 +28,9 @@ export default {
   }
 }
 </script>
-<!--<style type="text/css" scoped>-->
-<!--  .writer-list{-->
-<!--    width: 300px;-->
-<!--    margin-left: 50px;-->
-<!--    font-size: 14px;-->
-<!--  }-->
-<!--  .text ul{-->
-<!--    margin: 0;-->
-<!--    padding: 0;-->
-<!--    list-style: none;-->
-<!--  }-->
-<!--  .text ul li{-->
-<!--    line-height: 35px;-->
-<!--  }-->
-<!--</style>-->
+<style type="text/css">
+  .el-input-group__append{
+    background-color: #353b48 !important;
+    color: #f5f6f7 !important;
+  }
+</style>

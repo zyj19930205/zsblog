@@ -3,11 +3,12 @@
       <div class="author">
           <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" style="width: 24px;height: 24px"></el-avatar>
        </div>
+    <div class="small-meta" style="display: inline-block;padding-bottom: 5px;float: left" >{{authorName}}</div>
     <div class="tipInfo">
-      <div class="small-meta" style="float: left">{{authorName}}</div>
-      <div style="float: right" class="small-meta"><i  class="el-icon-star-on icon-style"></i>{{watchIt}} </div>
-      <div style="float: right" class="small-meta"><i class="el-icon-chat-round icon-style"></i>{{tips}}</div>
-      <div style="float: right" class="small-meta"><i class="el-icon-milk-tea icon-style"></i>12</div>
+<!--      <div style="float: right" class="small-meta"><el-button size="mini"><span class="el-icon-caret-bottom"></span>反对<span style="margin-left: 5px">5</span></el-button></div>-->
+      <div style="float: right" class="small-meta"><el-button size="mini">赞<span style="margin-left: 5px">51</span></el-button></div>
+      <div style="float: right" class="small-meta"><el-button size="mini">评论<span style="margin-left: 5px">51</span></el-button></div>
+<!--      <div style="float: right" class="small-meta"><i class="el-icon-milk-tea icon-style"></i>12</div>-->
     </div>
   </div>
 </template>
@@ -53,5 +54,8 @@ export default {
   }
   .writer{
   }
-
+  .tipInfo{
+    margin-right: 5px;
+    float: right;
+  }
 </style>

@@ -10,20 +10,25 @@
     <el-main>
       <el-row>
         <el-col :span="14" offset="2">
-          <el-card class="box-card" shadow="never">
+          <el-card class="box-card" shadow="always">
           <div class="article">
             <div class="title">{{title}}</div>
             <div class="authorInfo">
               <span class="tags">原创</span>
               <span>{{authorInfo.authorName}}</span>
+              <span style="float: right;padding-right: 10px;padding-top: 2px">
+                <i class="el-icon-edit" style="margin-right: 3px"></i>
+                <span style="font-style: italic">2020-05-10</span>
+              </span>
               <div class="info">
-              <span class="el-icon-star-on">{{authorInfo.star}}</span>
+<!--              <span class="el-icon-star-on">{{authorInfo.star}}</span>-->
               </div>
             </div>
             <div class="content" v-html="content">
             </div>
           </div>
           </el-card>
+
         </el-col>
         <el-col :span="8"><right-menu></right-menu></el-col>
       </el-row>
@@ -61,6 +66,9 @@ export default {
 }
 </script>
 <style type="text/css" scoped>
+  .article{
+    min-height: 700px;
+  }
   .title{
     font-size: 24px;
     font-weight: bold;
@@ -68,6 +76,9 @@ export default {
   .authorInfo{
     background-color: #f7f5f5;
     margin-top: 10px;
+    font-size: 14px;
+    height: 33px;
+    padding-top: 10px;
   }
   .content{
     margin-top: 20px;
@@ -95,6 +106,7 @@ export default {
     line-height: 23px;
     margin-right: 4px;
     padding:2px;
+    margin-left: 10px;
   }
   .info{
     float: right;

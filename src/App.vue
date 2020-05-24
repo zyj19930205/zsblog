@@ -16,4 +16,10 @@ export default {
     padding: 0;
     background-color: #f5f6f7;
   }
+  .el-card__header{
+    background: #353b48;
+  }
+  .el-card__header .clearfix span{
+    color: white;
+  }
 </style>

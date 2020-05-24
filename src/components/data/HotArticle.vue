@@ -1,9 +1,10 @@
 <template>
-  <div class="writer-list">
-    <el-card class="box-card" shadow="never">
+  <transition name="el-zoom-in-bottom" >
+  <div class="writer-list" v-show="show2">
+    <el-card class="box-card" shadow="always" >
       <div slot="header" class="clearfix" style="color: crimson">
         <span>最热文章</span>
-        <el-button style="float: right; padding: 3px 0" type="text">换一批</el-button>
+        <el-button style="float: right; padding: 3px 0" type="text" @click="hyp">换一批</el-button>
       </div>
       <div class="text item">
         <ul class="hotArticleList">
@@ -15,8 +16,24 @@
         </ul>
       </div>
     </el-card>
-  </div>
+    </div>
+  </transition>
 </template>
+<script>
+export default {
+  data: () => ({
+    show2: true
+  }),
+  methods: {
+    hyp () {
+      this.show2 = false
+      setTimeout(() => {
+        this.show2 = true
+      }, 500)
+    }
+  }
+}
+</script>
 <style type="text/css" scoped>
   .writer-list{
     width: 300px;

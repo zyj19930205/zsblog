@@ -1,6 +1,6 @@
 <template>
   <div class="tag-list">
-    <el-card class="box-card" shadow="never">
+    <el-card class="box-card" shadow="always">
       <div slot="header" class="clearfix" style="color: crimson">
         <span>分类专栏</span>
         <el-button style="float: right; padding: 3px 0" type="text">换一批</el-button>

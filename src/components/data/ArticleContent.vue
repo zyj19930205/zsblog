@@ -73,7 +73,7 @@ export default {
 </script>
 <style type="text/css" scope>
   .el-tabs--border-card>.el-tabs__header{
-    background-color: black !important;
+    background-color: #353b48 !important;
   }
   .el-tabs--border-card>.el-tabs__header .el-tabs__item{
     color: white !important;
@@ -92,6 +92,11 @@ export default {
   .title{
     font-size: 18px;
     font-weight: 700;
+  }
+  .abstract{
+    max-width: 800px;
+    margin-top: 10px;
+    text-indent:2em;
   }
   .abstract,.ArticleMeta{
     font-size: 14px;

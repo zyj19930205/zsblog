@@ -52,4 +52,8 @@ export default {
   .el-header{
     padding: 0 !important;
   }
+  .el-button--danger{
+   background: #c23616 !important;
+    border: #c23616 !important;
+  }
 </style>
