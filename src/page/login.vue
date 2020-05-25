@@ -4,18 +4,19 @@
           <img :src="logo"/>
         </div>
         <div class="input-gr">
-          <el-input placeholder="请输入内容" v-model="input1" prefix-icon="el-icon-user-solid" class="common-margin">
+          <el-input placeholder="请输入内容" v-model="username" prefix-icon="el-icon-user-solid" class="common-margin zyjinput">
           </el-input>
-          <el-input placeholder="请输入内容" v-model="input1" prefix-icon="el-icon-search" class="common-margin">
+          <el-input placeholder="请输入内容" v-model="password" prefix-icon="el-icon-search" class="common-margin zyjinput">
           </el-input>
 
           <div class="common-margin" style="font-size: 14px;">
-            <el-checkbox v-model="value1">记住我</el-checkbox>
+            <el-checkbox v-model="rememberMe">记住我</el-checkbox>
           </div>
 
           <div class="common-margin" style="text-align: center">
-            <el-button type="primary">登了个录</el-button>
+            <el-button type="primary" @click="login">登了个录</el-button>
           </div>
+          <span style="font-size: 10px"> {{loginInfo}}</span>
         </div>
       </div>
 </template>
@@ -25,28 +26,45 @@ export default {
   data () {
     return {
       logo: logo,
-      value1: true
+      rememberMe: true,
+      username: '',
+      password: '',
+      loginInfo: ''
+    }
+  },
+  methods: {
+    login () {
+      alert('进行登录，用户名为' + this.username + '密码为' + this.password)
+      let params = new URLSearchParams()
+      params.append('username', this.username)
+      params.append('password', this.password)
+      params.append('rememberme', this.rememberMe)
+      this.axios.post('http://localhost:8081/login', params).then((response) => {
+        if (response.data.code === 1) { this.$router.push({path: '/', query: {user: this.username, pwd: this.password}}) } else { this.loginInfo = '用户名或密码错误！' }
+      }).catch(function (err) {
+        console.log(err)
+      })
     }
   }
 }
 </script>
-<style type="text/css" scoped>
+<style>
   .loginbox{
     border-radius: 4px;
     width: 400px;
     background: #ffffff;
-    margin: 50px auto;
+    margin: 100px auto;
     padding: 40px 40px 30px;
   }
-  .logo{
+  .loginbox .logo{
     text-align: center;
   }
-  .logo img{
+  .loginbox .logo img{
     width: 260px;
     height: 60px;
     margin-top: 20px;
   }
-  .input-gr{
+  .loginbox .input-gr{
     width: 300px;
     margin: 20px auto;
   }
@@ -54,4 +72,12 @@ export default {
   .common-margin{
     margin-top: 10px;
   }
+  .el-button--primary{
+    background: #353b48 !important;
+    border: #353b48 !important;
+  }
+  .el-input__inner{
+    border-radius: 0 !important;
+  }
+
 </style>

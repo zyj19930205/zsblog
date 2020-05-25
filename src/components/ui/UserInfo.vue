@@ -4,11 +4,35 @@
         <div slot="header" class="clearfix" style="color: crimson">
           <span>用户信息</span>
         </div>
+        <div style="text-align: center">
+          <img :src="userImg"  style="width:70px; height:70px; border-radius:50%"/>
+        </div>
+        <div style="text-align: center;margin-top: 20px">{{loginInfo}}</div>
+
       <div>
       </div>
       </el-card>
     </div>
 </template>
+<script>
+import jxlt from '../../assets/jxlt.jpg'
+export default {
+  data () {
+    return {
+      username: '',
+      userpwd: '',
+      loginStatus: 0,
+      loginInfo: '',
+      userImg: jxlt
+    }
+  },
+  mounted () {
+    if (this.loginStatus === 0) {
+      this.loginInfo = '未登录，登录查看更多精彩内容'
+    }
+  }
+}
+</script>
 <style scoped>
 .user-info{
   margin-bottom: 20px;

@@ -36,7 +36,7 @@ export default {
   }
 }
 </script>
-<style>
+<style type="text/css">
   .logo{
     margin-right: 50px;
   }

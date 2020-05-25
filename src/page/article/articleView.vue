@@ -65,11 +65,11 @@ export default {
   }
 }
 </script>
-<style type="text/css" scoped>
+<style type="text/css">
   .article{
     min-height: 700px;
   }
-  .title{
+  .article .title{
     font-size: 24px;
     font-weight: bold;
   }
