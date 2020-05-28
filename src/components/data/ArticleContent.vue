@@ -3,6 +3,7 @@
   <el-tabs type="border-card">
     <el-tab-pane label="看帖">
       <div class="articleList">
+        <div v-if="articles === null || articles.length===0">没有数据，服务器炸啦？</div>
       <ul>
         <li v-for="article in articles">
           <div class="title">
@@ -42,11 +43,17 @@ export default {
   },
   data () {
     return {
-      articles: []
+      articles: [],
+      token: ''
     }
   },
   created () {
-    this.axios.get('http://localhost:8081/article').then((response) => {
+    let token = localStorage.getItem('token')
+    this.axios.get('http://localhost:8081/article', {
+      headers: {
+        'Authorization': token
+      }
+    }).then((response) => {
       console.log(response.data)
       this.articles = response.data
     }).catch(function (err) {

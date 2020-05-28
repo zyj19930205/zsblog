@@ -40,7 +40,11 @@ export default {
       params.append('password', this.password)
       params.append('rememberme', this.rememberMe)
       this.axios.post('http://localhost:8081/login', params).then((response) => {
-        if (response.data.code === 1) { this.$router.push({path: '/', query: {user: this.username, pwd: this.password}}) } else { this.loginInfo = '用户名或密码错误！' }
+        if (response.data.code === 1) {
+          let storage = window.localStorage
+          storage['token'] = response.data.token
+          this.$router.push({path: '/', query: {user: this.username, pwd: this.password}})
+        } else { this.loginInfo = '用户名或密码错误！' }
       }).catch(function (err) {
         console.log(err)
       })
