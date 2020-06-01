@@ -8,7 +8,6 @@
           <img :src="userImg"  style="width:70px; height:70px; border-radius:50%"/>
         </div>
         <div style="text-align: center;margin-top: 20px">{{loginInfo}}</div>
-
       <div>
       </div>
       </el-card>

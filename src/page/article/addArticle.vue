@@ -39,6 +39,18 @@
               clearable>
             </el-input>
             <div class="article-write-box" style="height: 650px;margin-top: 20px">
+              <el-upload
+                v-show="false"
+                class="avatar-uploader"
+                :action="serverUrl"
+                name="img"
+                :headers="header"
+                :show-file-list="false"
+                :on-success="uploadSuccess"
+                :on-error="uploadError"
+                :before-upload="beforeUpload">
+              </el-upload>
+              <el-row v-loading="quillUpdateImg"/>
             <quill-editor ref="myTextEditor" v-model="content" :options="editorOption" style="height:600px;"></quill-editor>
             </div>
             <div class="article-set">
@@ -81,21 +93,37 @@
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
-import { quillEditor } from 'vue-quill-editor'
+import {quillEditor} from 'vue-quill-editor'
 import headerNav from '../../components/ui/header'
-
+const toolbarOptions = [
+  ['bold', 'italic', 'underline', 'strike', {'font': []}],
+  ['blockquote', 'code-block'],
+  [{ 'header': 1 }, { 'header': 2 }],
+  ['image']
+]
 export default {
   data () {
     return {
       content: `<p></p><p><br></p><ol></ol>`,
+      quillUpdateImg: false, // 根据图片上传状态来确定是否显示loading动画，刚开始是false,不显示
+      serverUrl: 'http://localhost:8081/getFile', // 图片服务器地址
+      header: {token: sessionStorage.token}, // 有的图片服务器要求请求头需要有token之类的参数，写在这里
+      detailContent: '', // 富文本内容
       editorOption: {
         placeholder: '编辑文章内容',
         modules: {
-          toolbar: [
-            ['bold', 'italic', 'underline', 'strike', {'font': []}],
-            ['blockquote', 'code-block'],
-            [{ 'header': 1 }, { 'header': 2 }]
-          ]
+          toolbar: {
+            container: toolbarOptions,
+            handlers: {
+              'image': function (value) {
+                if (value) {
+                  document.querySelector('.avatar-uploader input').click()
+                } else {
+                  this.quill.format('image', false)
+                }
+              }
+            }
+          }
         }
       },
       article: {
@@ -125,11 +153,49 @@ export default {
     }
   },
   components: {
-    quillEditor, headerNav
+    headerNav, quillEditor
   },
   methods: {
     onEditorChange ({ editor, html, text }) {
       this.content = html
+    },
+    beforeUpload (res, file) {
+      this.quillUpdateImg = true
+    },
+    // 上传图片成功
+    uploadSuccess (res, file) {
+      // res为图片服务器返回的数据
+      // 获取富文本组件实例
+      let quill = this.$refs.myTextEditor.quill
+      console.log(quill)
+      // 如果上传成功
+      // if (res.code === '200' && res.info !== null) {
+      //   // 获取光标所在位置
+      //   let length = quill.getSelection().index
+      //   // 插入图片  res.info为服务器返回的图片地址
+      //   quill.insertEmbed(length, 'image', res.info)
+      //   // 调整光标到最后
+      //   quill.setSelection(length + 1)
+      // }
+      if (res !== null) {
+        // 获取光标所在位置
+        let length = quill.getSelection().index
+        console.log(res)
+        // 插入图片  res.info为服务器返回的图片地址
+        quill.insertEmbed(length, 'image', 'http://localhost:8081/picture/58180511-4765-49c8-affe-ab4842ae37ce.png')
+        // 调整光标到最后
+        quill.setSelection(length + 1)
+      } else {
+        this.$message.error('图片插入失败')
+      }
+      // loading动画消失
+      this.quillUpdateImg = false
+    },
+    // 上传图片失败
+    uploadError (res, file) {
+      // loading动画消失
+      this.quillUpdateImg = false
+      this.$message.error('图片上传失败')
     },
     commitArticle ({ editor, html, text }) {
       this.axios.post('http://localhost:8081/article', this.article, {
@@ -174,7 +240,7 @@ export default {
     width:1366px ;
   }
   .article-type-select{
-    margin-top: 20px;
+    margin-top: 40px;
     font-size: 16px;
   }
   .bz{
