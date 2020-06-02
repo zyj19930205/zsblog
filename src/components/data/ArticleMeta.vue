@@ -3,10 +3,10 @@
       <div class="author">
           <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" style="width: 24px;height: 24px"></el-avatar>
        </div>
-    <div class="small-meta" style="display: inline-block;padding-bottom: 5px;float: left" >{{authorName}}</div>
+    <div class="small-meta" style="display: inline-block;padding-bottom: 5px;float: left" >{{mateInfo.nickname}}</div>
     <div class="tipInfo">
 <!--      <div style="float: right" class="small-meta"><el-button size="mini"><span class="el-icon-caret-bottom"></span>反对<span style="margin-left: 5px">5</span></el-button></div>-->
-      <div style="float: right" class="small-meta"><el-button size="mini">赞<span style="margin-left: 5px">51</span></el-button></div>
+      <div style="float: right" class="small-meta"><el-button size="mini" @click="zan()">赞<span style="margin-left: 5px">{{mateInfo.stars}}</span></el-button></div>
       <div style="float: right" class="small-meta"><el-button size="mini">评论<span style="margin-left: 5px">51</span></el-button></div>
 <!--      <div style="float: right" class="small-meta"><i class="el-icon-milk-tea icon-style"></i>12</div>-->
     </div>
@@ -15,12 +15,19 @@
 <script>
 export default {
 
-  props: ['authorName'],
+  props: ['mateInfo'],
   data () {
     return {
       author: '邹宇杰',
       tips: 12,
       watchIt: 22
+    }
+  },
+  methods: {
+    zan () {
+      this.axios.get('http://localhost:8081/addTip/' + this.mateInfo.id).then((response) => {
+        this.mateInfo.stars++
+      })
     }
   }
 }

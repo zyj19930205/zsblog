@@ -1,5 +1,5 @@
 <template>
-  <el-header>
+
   <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
         <el-menu-item index="1" class="logo"><img :src="logo" style="width: 135px;height: 30px"></el-menu-item>
     <el-submenu index="3" class="tab">
@@ -15,7 +15,6 @@
 
   </el-menu>
 
-  </el-header>
 </template>
 <script>
 import logo from '../../assets/logo1.png'
@@ -37,6 +36,10 @@ export default {
 }
 </script>
 <style type="text/css">
+  .el-menu-demo{
+    margin: 0 auto;
+    width:1366px ;
+  }
   .logo{
     margin-right: 50px;
   }

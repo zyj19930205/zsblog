@@ -15,6 +15,7 @@ export default {
     margin: 0;
     padding: 0;
     background-color: #f5f6f7;
+    height: 100%;
   }
   .el-card__header{
     background: #353b48;

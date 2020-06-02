@@ -11,20 +11,20 @@
           :visible.sync="dialogVisible"
           width="30%"
           :before-close="handleClose">
-              <el-input
-                placeholder="请输入标签名进行搜索哦~"
-                v-model="article.title"
-                clearable>
-            </el-input>
+          <el-input
+            placeholder="请输入标签名进行搜索哦~"
+            v-model="article.title"
+            clearable>
+          </el-input>
           <div id="tablist">
             <div class="tabitme" v-for="(tag,index) in tags">
               <el-button type="info" plain size="mini" @click="getTag(index)">{{tag.tagName}}</el-button>
             </div>
           </div>
-            <div style="margin-top: 20px">
-    <el-button @click="dialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-              </div>
+          <div style="margin-top: 20px">
+            <el-button @click="dialogVisible = false">取 消</el-button>
+            <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+          </div>
         </el-dialog>
 
       </el-col>
@@ -51,35 +51,35 @@
                 :before-upload="beforeUpload">
               </el-upload>
               <el-row v-loading="quillUpdateImg"/>
-            <quill-editor ref="myTextEditor" v-model="content" :options="editorOption" style="height:600px;"></quill-editor>
+              <quill-editor ref="myTextEditor" v-model="content" :options="editorOption" style="height:600px;"></quill-editor>
             </div>
             <div class="article-set">
-            <div class="article-type-select">
-              文章类型：
-              <el-select v-model="value" placeholder="请选择"  size="small" >
-                <el-option
-                  v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
-                </el-option>
-              </el-select>
-              <span class="bz">*原创的文章享有版权保护，请勿将复制黏贴来的知识作为原创！</span>
-            </div>
+              <div class="article-type-select">
+                文章类型：
+                <el-select v-model="value" placeholder="请选择"  size="small" >
+                  <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                  </el-option>
+                </el-select>
+                <span class="bz">*原创的文章享有版权保护，请勿将复制黏贴来的知识作为原创！</span>
+              </div>
 
-            <div style="margin-top: 20px" id="article-tags">
-              文章标签：<el-button size="mini" @click="addTags">添加标签<i class="el-icon-plus el-icon--right"></i></el-button>
-              <span v-for="(selectedTag,index) in selectedTags" style="padding:0 2px"><el-button size="mini">{{selectedTag}}<i class="el-icon-circle-close el-icon--right" @click="removeTag(index)"></i></el-button></span>
-            </div>
-            <div style="margin-top: 20px;">
-              是否开放：<el-switch
-              v-model="isopened"
-              active-color="#13ce66"
-              inactive-color="#ff4949"
-              active-text="公开"
-              inactive-text="私密">
-            </el-switch>
-            </div>
+              <div style="margin-top: 20px" id="article-tags">
+                文章标签：<el-button size="mini" @click="addTags">添加标签<i class="el-icon-plus el-icon--right"></i></el-button>
+                <span v-for="(selectedTag,index) in selectedTags" style="padding:0 2px"><el-button size="mini">{{selectedTag}}<i class="el-icon-circle-close el-icon--right" @click="removeTag(index)"></i></el-button></span>
+              </div>
+              <div style="margin-top: 20px;">
+                是否开放：<el-switch
+                v-model="isopened"
+                active-color="#13ce66"
+                inactive-color="#ff4949"
+                active-text="公开"
+                inactive-text="私密">
+              </el-switch>
+              </div>
             </div>
             <div style="margin-top: 20px"><el-button type="danger" @click="commitArticle">提交文章</el-button></div>
           </el-card>
@@ -132,16 +132,16 @@ export default {
         authorId: ''
       },
       options: [{
-        value: '选项1',
+        value: '原创',
         label: '原创'
       }, {
-        value: '选项2',
+        value: '转载',
         label: '转载'
       }, {
-        value: '选项3',
+        value: '资源',
         label: '资源'
       }, {
-        value: '选项4',
+        value: '通知',
         label: '通知'
       }],
       value: '',
@@ -154,6 +154,12 @@ export default {
   },
   components: {
     headerNav, quillEditor
+  },
+  created () {
+    this.axios.get('http://localhost:8081/article/' + this.$route.query.id).then((response) => {
+      this.article.title = response.data.title
+      this.content = response.data.content
+    })
   },
   methods: {
     onEditorChange ({ editor, html, text }) {

@@ -15,7 +15,7 @@
           </div>
 
           <div class="ArticleMeta">
-            <article-meta :authorName="article.nickname"></article-meta>
+            <article-meta :mateInfo="article"></article-meta>
           </div>
           <el-divider></el-divider>
         </li>

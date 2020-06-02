@@ -8,7 +8,8 @@ import Index from '../page/index'
 import articleView from '../page/article/articleView'
 import addArticle from '../page/article/addArticle'
 import login from '../page/login'
-
+import articleManage from '../page/manage/articleManage'
+import editArticle from '../page/article/editArticle'
 Vue.use(ElementUI)
 Vue.use(VueAxios, axios)
 Vue.use(Router)
@@ -31,6 +32,14 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: login
+    }, {
+      path: '/manage/articleManage',
+      name: 'articleManage',
+      component: articleManage
+    }, {
+      path: '/editArticle',
+      name: 'editArticle',
+      component: editArticle
     }
   ]
 })
