@@ -203,8 +203,10 @@ export default {
       this.$message.error('图片上传失败')
     },
     commitArticle ({ editor, html, text }) {
-      this.axios.post('http://localhost:8081/article', this.article, {
+      const that = this
+      this.axios.post('http://localhost:8081/upd', this.article, {
         params: {
+          id: this.$route.query.id,
           title: this.article.title,
           content: this.content,
           authorId: '1'
@@ -213,7 +215,8 @@ export default {
           'content-type': 'application/json'
         }
       }).then(function (res) {
-        console.log(res)
+        alert('更新成功')
+        that.$router.push({path: '/'})
       }).catch(function (err) {
         console.log(err)
       })

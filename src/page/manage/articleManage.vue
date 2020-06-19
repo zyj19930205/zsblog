@@ -139,11 +139,6 @@ export default {
           message: '已取消删除'
         })
       })
-
-      // this.axios.delete('http://localhost:8081/del/' + row.id).then((response) => {
-      //   alert(response.data)
-      //   this.articles.splice(index, 1)
-      // })
     }
   }
 }

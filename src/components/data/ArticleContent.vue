@@ -30,7 +30,8 @@
     <el-pagination
       background
       layout="prev, pager, next"
-      :total="1000">
+      @current-change="handleCurrentChange"
+      :total="totalPage">
     </el-pagination>
     </div>
   </div>
@@ -44,12 +45,13 @@ export default {
   data () {
     return {
       articles: [],
-      token: ''
+      token: '',
+      totalPage: 100
     }
   },
   created () {
     let token = localStorage.getItem('token')
-    this.axios.get('http://localhost:8081/article', {
+    this.axios.get('http://localhost:8081/articleByPage', {
       headers: {
         'Authorization': token
       }
@@ -73,6 +75,18 @@ export default {
         query: {
           id: id
         }
+      })
+    },
+    handleCurrentChange (page) {
+      this.axios.get('http://localhost:8081/articleByPage', {
+        params: {
+          page: page
+        }
+      }).then((response) => {
+        console.log(response.data)
+        this.articles = response.data
+      }).catch(function (err) {
+        console.log(err)
       })
     }
   }
