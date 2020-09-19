@@ -56,7 +56,7 @@
             <div class="article-set">
             <div class="article-type-select">
               文章类型：
-              <el-select v-model="value" placeholder="请选择"  size="small" >
+              <el-select v-model="article.articleType" placeholder="请选择"  size="small" @change="typeChanged">
                 <el-option
                   v-for="item in options"
                   :key="item.value"
@@ -129,19 +129,21 @@ export default {
       article: {
         title: '',
         articleContent: '',
-        authorId: ''
+        authorId: '',
+        articleType: '原创',
+        articleTags: []
       },
       options: [{
-        value: '选项1',
+        value: '原创',
         label: '原创'
       }, {
-        value: '选项2',
+        value: '转载',
         label: '转载'
       }, {
-        value: '选项3',
+        value: '资源',
         label: '资源'
       }, {
-        value: '选项4',
+        value: '通知',
         label: '通知'
       }],
       value: '',
@@ -167,15 +169,6 @@ export default {
       // res为图片服务器返回的数据
       // 获取富文本组件实例
       let quill = this.$refs.myTextEditor.quill
-      // 如果上传成功
-      // if (res.code === '200' && res.info !== null) {
-      //   // 获取光标所在位置
-      //   let length = quill.getSelection().index
-      //   // 插入图片  res.info为服务器返回的图片地址
-      //   quill.insertEmbed(length, 'image', res.info)
-      //   // 调整光标到最后
-      //   quill.setSelection(length + 1)
-      // }
       if (res !== null) {
         // 获取光标所在位置
         let length = quill.getSelection().index
@@ -229,6 +222,9 @@ export default {
     },
     removeTag (index) {
       this.selectedTags.splice(index, 1)
+    },
+    typeChanged (a) {
+      this.articleType = a
     }
   }
 }
