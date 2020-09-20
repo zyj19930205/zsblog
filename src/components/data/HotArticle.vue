@@ -8,11 +8,15 @@
       </div>
       <div class="text item">
         <ul class="hotArticleList">
-          <li>5月12日-5月14日食堂菜单</li>
-          <li>深入理解JVM虚拟机小赏</li>
-          <li>如何使用蔡文姬杀猪？</li>
-          <li>泡芙的猫粮快吃完了</li>
-          <li>今晚去天虹shopping</li>
+          <li v-for="hot in hotart">
+            <span v-if="hot.title.length < 10"> {{hot.title}}</span>
+            <span v-else> {{hot.title.slice(0,25)}}...</span>
+          </li>
+<!--          <li>5月12日-5月14日食堂菜单</li>-->
+<!--          <li>深入理解JVM虚拟机小赏</li>-->
+<!--          <li>如何使用蔡文姬杀猪？</li>-->
+<!--          <li>泡芙的猫粮快吃完了</li>-->
+<!--          <li>今晚去天虹shopping</li>-->
         </ul>
       </div>
     </el-card>
@@ -22,8 +26,18 @@
 <script>
 export default {
   data: () => ({
-    show2: true
+    show2: true,
+    hotart: []
   }),
+  created () {
+    this.axios.get('http://localhost:8081/hotArticle', {
+    }).then((response) => {
+      console.log(response.data)
+      this.hotart = response.data
+    }).catch(function (err) {
+      console.log(err)
+    })
+  },
   methods: {
     hyp () {
       this.show2 = false

@@ -190,16 +190,20 @@ export default {
       this.$message.error('图片上传失败')
     },
     commitArticle ({ editor, html, text }) {
+      const that = this
       this.axios.post('http://localhost:8081/article', this.article, {
         params: {
           title: this.article.title,
           content: this.content,
-          authorId: '1'
+          authorId: '1',
+          createDate: new Date().getDate()
         },
         headers: {
           'content-type': 'application/json'
         }
       }).then(function (res) {
+        alert('插入成功！')
+        that.$router.push('/')
         console.log(res)
       }).catch(function (err) {
         console.log(err)

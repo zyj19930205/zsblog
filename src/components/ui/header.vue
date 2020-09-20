@@ -1,23 +1,17 @@
 <template>
 
   <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-        <el-menu-item index="1" class="logo"><img :src="logo" style="width: 135px;height: 30px"></el-menu-item>
-    <el-submenu index="3" class="tab">
-      <template slot="title">我的工作台</template>
-      <el-menu-item index="3-1">选项1</el-menu-item>
-      <el-menu-item index="3-2">选项2</el-menu-item>
-      <el-menu-item index="3-3">选项3</el-menu-item>
-    </el-submenu>
+        <el-menu-item index="1" class="logo"><img :src="logo" style="width: 150px;height: 55px"></el-menu-item>
+    <el-menu-item index="5" class="tab" @click="manage">我的工作台</el-menu-item>
         <el-menu-item index="2" class="tab">消息</el-menu-item>
         <el-menu-item index="3" class="tab">工具箱</el-menu-item>
-        <el-menu-item index="4" class="tab">热点</el-menu-item>
         <el-menu-item  class="tab"> <el-button type="danger" @click="writeArticle" size="small">写文章</el-button></el-menu-item>
 
   </el-menu>
 
 </template>
 <script>
-import logo from '../../assets/logo1.png'
+import logo from '../../assets/logo3.png'
 export default {
   data () {
     return {
@@ -31,6 +25,9 @@ export default {
     },
     writeArticle () {
       this.$router.push('addArticle')
+    },
+    manage () {
+      this.$router.push('/manage/articleManage')
     }
   }
 }
