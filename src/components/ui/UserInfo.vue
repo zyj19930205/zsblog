@@ -26,8 +26,10 @@ export default {
     }
   },
   mounted () {
-    if (this.loginStatus === 0) {
+    if (sessionStorage.getItem('token') === null) {
       this.loginInfo = '未登录，登录查看更多精彩内容'
+    } else {
+      this.loginInfo = '欢迎您'
     }
   }
 }
