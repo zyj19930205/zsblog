@@ -7,7 +7,7 @@
       <ul>
         <li v-for="article in articles">
           <div class="title">
-            <span v-if="article.recommend" class="bj">荐</span>
+            <span v-if="article.stars > 25" class="bj">荐</span>
             {{article.title}}
           </div>
           <div class="abstract" @click="getArticle(article.id)">
@@ -22,9 +22,29 @@
       </ul>
     </div>
     </el-tab-pane>
-    <el-tab-pane label="热点">配置管理</el-tab-pane>
-    <el-tab-pane label="精品">角色管理</el-tab-pane>
-    <el-tab-pane label="吃货">定时任务补偿</el-tab-pane>
+    <el-tab-pane label="原创">
+      <div class="articleList">
+      <div v-if="ycarticles === null || ycarticles.length===0">没有数据，服务器炸啦？</div>
+      <ul>
+        <li v-for="article in ycarticles">
+          <div class="title">
+            <span v-if="article.stars > 25" class="bj">荐</span>
+            {{article.title}}
+          </div>
+          <div class="abstract" @click="getArticle(article.id)">
+            {{deleteHtmlTag(article.content)}}
+          </div>
+
+          <div class="ArticleMeta">
+            <article-meta :mateInfo="article"></article-meta>
+          </div>
+          <el-divider></el-divider>
+        </li>
+      </ul>
+    </div>
+    </el-tab-pane>
+    <el-tab-pane label="转载">角色管理</el-tab-pane>
+    <el-tab-pane label="资源">定时任务补偿</el-tab-pane>
   </el-tabs>
     <div style="margin-top: 15px;text-align: center">
     <el-pagination
@@ -45,6 +65,7 @@ export default {
   data () {
     return {
       articles: [],
+      ycarticles: [],
       token: '',
       totalPage: 100
     }
@@ -57,7 +78,8 @@ export default {
       }
     }).then((response) => {
       console.log(response.data)
-      this.articles = response.data
+      this.articles = response.data.reverse()
+      this.renderYcarticles()
     }).catch(function (err) {
       console.log(err)
     })
@@ -84,7 +106,7 @@ export default {
         }
       }).then((response) => {
         console.log(response.data)
-        this.articles = response.data
+        this.articles = response.data.reverse()
       }).catch(function (err) {
         console.log(err)
       })

@@ -1,50 +1,40 @@
 <template>
   <el-container direction="vertical">
-    <el-header>
-      <div class="header">
-      <ul>
-        <li class="logo">
-          <img :src="logo">
-        </li>
-        <li></li>
-      </ul>
-      </div>
-    </el-header>
+    <el-row>
+      <el-col :xs="{span:24,offset:0}" :xl="{span:24,offset:0}">
+        <div class="headNav" style="border-bottom: solid 1px #e6e6e6;background-color: #ffffff">
+          <headerNav></headerNav>
+        </div>
+      </el-col>
+    </el-row>
+<!--    <header-nav></header-nav>-->
+<!--    <el-header>-->
+<!--      <div class="header">-->
+<!--      <ul>-->
+<!--        <li class="logo">-->
+<!--          <img :src="logo">-->
+<!--        </li>-->
+<!--        <li></li>-->
+<!--      </ul>-->
+<!--      </div>-->
+<!--    </el-header>-->
     <div class="leftNav">
       <el-menu
-      default-active="2"
+      default-active="1"
       class="el-menu-vertical-demo"
       @open="handleOpen"
       @close="handleClose">
-      <el-submenu index="1">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>文章管理</span>
-        </template>
-        <el-menu-item-group>
-          <template slot="title">分组一</template>
-          <el-menu-item index="1-1">文章管理</el-menu-item>
-          <el-menu-item index="1-2">选项2</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="分组2">
-          <el-menu-item index="1-3">选项3</el-menu-item>
-        </el-menu-item-group>
-        <el-submenu index="1-4">
-          <template slot="title">选项4</template>
-          <el-menu-item index="1-4-1">选项1</el-menu-item>
-        </el-submenu>
-      </el-submenu>
+        <el-menu-item index="1">
+          <i class="el-icon-menu"></i>
+          <span slot="title">文章管理</span>
+        </el-menu-item>
       <el-menu-item index="2">
         <i class="el-icon-menu"></i>
         <span slot="title">导航二</span>
       </el-menu-item>
-      <el-menu-item index="3" disabled>
-        <i class="el-icon-document"></i>
-        <span slot="title">导航三</span>
-      </el-menu-item>
-      <el-menu-item index="4">
+      <el-menu-item index="3">
         <i class="el-icon-setting"></i>
-        <span slot="title">导航四</span>
+        <span slot="title">个人信息</span>
       </el-menu-item>
     </el-menu></div>
     <div class="content">
@@ -71,6 +61,10 @@
             <el-table-column
               prop="tips"
               label="点击数">
+            </el-table-column>
+            <el-table-column
+              prop="stars"
+              label="星星">
             </el-table-column>
             <el-table-column label="操作">
               <template slot-scope="scope">
