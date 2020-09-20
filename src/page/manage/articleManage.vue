@@ -7,18 +7,8 @@
         </div>
       </el-col>
     </el-row>
-<!--    <header-nav></header-nav>-->
-<!--    <el-header>-->
-<!--      <div class="header">-->
-<!--      <ul>-->
-<!--        <li class="logo">-->
-<!--          <img :src="logo">-->
-<!--        </li>-->
-<!--        <li></li>-->
-<!--      </ul>-->
-<!--      </div>-->
-<!--    </el-header>-->
     <div class="leftNav">
+      <div style="height: 50px;width: 100%;background-color: #353b48;color: white;line-height: 48px;font-size: 12px;text-align: center">为了更美好的明天~</div>
       <el-menu
       default-active="1"
       class="el-menu-vertical-demo"
@@ -26,23 +16,22 @@
       @close="handleClose">
         <el-menu-item index="1">
           <i class="el-icon-menu"></i>
-          <span slot="title">文章管理</span>
+          <span slot="title" @click="gotoManage">文章管理</span>
         </el-menu-item>
-      <el-menu-item index="2">
-        <i class="el-icon-menu"></i>
-        <span slot="title">导航二</span>
-      </el-menu-item>
+        <el-menu-item index="2">
+          <i class="el-icon-menu"></i>
+          <span slot="title" @click="gotoManage">评论管理</span>
+        </el-menu-item>
       <el-menu-item index="3">
         <i class="el-icon-setting"></i>
-        <span slot="title">个人信息</span>
+        <span slot="title" @click="gotoUserInfo">个人信息</span>
       </el-menu-item>
     </el-menu></div>
     <div class="content">
       <el-card class="box-card">
         <div class="mbx">
         <el-breadcrumb separator="/">
-          <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-          <el-breadcrumb-item :to="{ path: '/' }">文章管理</el-breadcrumb-item>
+          <el-breadcrumb-item :to="{ path: '/manage/articleManage' }">文章管理</el-breadcrumb-item>
         </el-breadcrumb>
         </div>
         <div class="tabledata">
@@ -133,6 +122,12 @@ export default {
           message: '已取消删除'
         })
       })
+    },
+    gotoManage () {
+      this.$router.push('/manage/articleManage')
+    },
+    gotoUserInfo () {
+      this.$router.push('/manage/userCenter')
     }
   }
 }

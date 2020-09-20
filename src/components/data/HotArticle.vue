@@ -9,8 +9,8 @@
       <div class="text item">
         <ul class="hotArticleList">
           <li v-for="hot in hotart">
-            <span v-if="hot.title.length < 10"> {{hot.title}}</span>
-            <span v-else> {{hot.title.slice(0,25)}}...</span>
+            <span v-if="hot.title.length < 10" @click="getArticle(hot.id)"> {{hot.title}}</span>
+            <span v-else @click="getArticle(hot.id)"> {{hot.title.slice(0,25)}}...</span>
           </li>
 <!--          <li>5月12日-5月14日食堂菜单</li>-->
 <!--          <li>深入理解JVM虚拟机小赏</li>-->
@@ -44,6 +44,14 @@ export default {
       setTimeout(() => {
         this.show2 = true
       }, 500)
+    },
+    getArticle(id){
+      this.$router.push({
+        path: '/articleView',
+        query: {
+          id: id
+        }
+      })
     }
   }
 }
@@ -61,5 +69,12 @@ export default {
   }
   .text ul li{
     line-height: 35px;
+  }
+  .hotArticleList li span{
+    cursor: pointer;
+  }
+  .hotArticleList li span:hover{
+    color: #c23616;
+    font-weight: bold;
   }
 </style>

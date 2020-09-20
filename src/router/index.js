@@ -10,6 +10,7 @@ import addArticle from '../page/article/addArticle'
 import login from '../page/login'
 import articleManage from '../page/manage/articleManage'
 import editArticle from '../page/article/editArticle'
+import UserCenter from '../components/data/UserCenter'
 Vue.use(ElementUI)
 Vue.use(VueAxios, axios)
 Vue.use(Router)
@@ -40,6 +41,10 @@ const router = new Router({
       path: '/editArticle',
       name: 'editArticle',
       component: editArticle
+    }, {
+      path: '/manage/UserCenter',
+      name: 'UserCenter',
+      component: UserCenter
     }
   ]
 })

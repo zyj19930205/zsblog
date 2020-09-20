@@ -196,7 +196,7 @@ export default {
           title: this.article.title,
           content: this.content,
           authorId: '1',
-          createDate: new Date().getDate()
+          createDate:  this.getToday()
         },
         headers: {
           'content-type': 'application/json'
@@ -229,6 +229,10 @@ export default {
     },
     typeChanged (a) {
       this.articleType = a
+    },
+    getToday () {
+      let date = new Date() // 获取时间戳
+      return date.toLocaleString() // 转成字符串 2016/12/21 09:09:10
     }
   }
 }

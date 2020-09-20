@@ -171,4 +171,8 @@ export default {
   .abstract {
     cursor: pointer;
   }
+  .abstract:hover{
+    font-style:italic;
+    text-decoration:underline
+  }
 </style>

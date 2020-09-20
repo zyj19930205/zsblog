@@ -28,9 +28,9 @@
             </div>
           </div>
           </el-card>
-
+          <Comment :articleId="aid"></Comment>
         </el-col>
-        <el-col :span="8"><right-menu></right-menu></el-col>
+        <el-col :span="8" ><right-menu></right-menu></el-col>
       </el-row>
     </el-main>
   </el-container>
@@ -38,9 +38,10 @@
 <script>
 import headerNav from '../../components/ui/header'
 import rightMenu from '../../components/ui/RightMenu'
+import Comment from '../../components/data/Comment'
 export default {
   components: {
-    headerNav, rightMenu
+    headerNav, rightMenu, Comment
   },
   data () {
     return {
