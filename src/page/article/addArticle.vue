@@ -196,7 +196,8 @@ export default {
           title: this.article.title,
           content: this.content,
           authorId: '1',
-          createDate:  this.getToday()
+          createDate: this.getToday(),
+          authorName: '邹大仙'
         },
         headers: {
           'content-type': 'application/json'

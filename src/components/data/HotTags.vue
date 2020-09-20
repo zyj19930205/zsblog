@@ -12,8 +12,9 @@
             v-for="item in items"
             :key="item.label"
             :type="item.type"
-            effect="dark">
-            {{ item.label }}
+            effect="dark"
+          style="cursor: pointer">
+          {{ item.label }}
           </el-tag>
         </div>
       </div>
@@ -38,6 +39,9 @@
   }
   .el-tag--mini{
     margin: 3px 3px !important;
+  }
+  .tags{
+    cursor: pointer;
   }
 </style>
 <script>

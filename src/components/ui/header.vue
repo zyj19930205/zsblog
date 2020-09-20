@@ -1,9 +1,9 @@
 <template>
 
   <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-        <el-menu-item index="1" class="logo"><img :src="logo" style="width: 150px;height: 55px"></el-menu-item>
+        <el-menu-item index="1" class="logo"><router-link to="/"><img :src="logo" style="width: 140px;height: 50px" /></router-link> </el-menu-item>
+    <el-menu-item index="4" class="tab" @click="logout"><span style="color: #c23616">退出</span></el-menu-item>
     <el-menu-item index="5" class="tab" @click="manage">我的工作台</el-menu-item>
-        <el-menu-item index="2" class="tab">消息</el-menu-item>
         <el-menu-item index="3" class="tab">工具箱</el-menu-item>
         <el-menu-item  class="tab"> <el-button type="danger" @click="writeArticle" size="small">写文章</el-button></el-menu-item>
 
@@ -11,7 +11,7 @@
 
 </template>
 <script>
-import logo from '../../assets/logo3.png'
+import logo from '../../assets/logo3.jpg'
 export default {
   data () {
     return {
@@ -28,6 +28,10 @@ export default {
     },
     manage () {
       this.$router.push('/manage/articleManage')
+    },
+    logout () {
+      sessionStorage.clear()
+      this.$router.push('/login')
     }
   }
 }

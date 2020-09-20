@@ -14,7 +14,7 @@
       <ul>
         <li v-for="(comment,index) in commentList" class="comment">
           <div class="user">
-            {{comment.userName}}:<span>{{comment.content}}</span>
+            <span>{{comment.userName}}:</span><span style="margin-left: 10px;font-style: italic">{{comment.content}}</span>
             <span  style="float:right">{{comment.commentDate}}</span>
           </div>
           <div class="comment_content"></div>
@@ -49,6 +49,7 @@ export default {
       let newComment = {
         articleId: this.articleId,
         content: this.mcomment,
+        userName: '邹大仙',
         userId: '1',
         commentDate: this.getToday()
       }
@@ -78,7 +79,6 @@ export default {
     width: 100%;
     margin: 20px auto;
     background-color: white;
-    height: 50px;
   }
   .commentlist ul{
     list-style: none;

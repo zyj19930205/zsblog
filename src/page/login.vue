@@ -1,7 +1,7 @@
 <template>
       <div class="loginbox" style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)">
         <div class="logo">
-          <img :src="logo"/>
+          <img :src="logo" style="width: 150px;height: 60px"/>
         </div>
         <div class="input-gr">
           <el-input placeholder="请输入内容" v-model="username" prefix-icon="el-icon-user-solid" class="common-margin zyjinput">
@@ -21,7 +21,7 @@
       </div>
 </template>
 <script>
-import logo from '../assets/logo1.png'
+import logo from '../assets/logo3.jpg'
 export default {
   data () {
     return {
@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     login () {
-      alert('进行登录，用户名为' + this.username + '密码为' + this.password)
+      let that = this
       let params = new URLSearchParams()
       params.append('username', this.username)
       params.append('password', this.password)
@@ -44,7 +44,12 @@ export default {
           let storage = window.sessionStorage
           storage['token'] = response.data.token
           this.$router.push({path: '/', query: {user: this.username, pwd: this.password}})
-        } else { this.loginInfo = '用户名或密码错误！' }
+        } else {
+          that.$message({
+            type: 'error',
+            message: '用户名或密码错误！!'
+          })
+        }
       }).catch(function (err) {
         console.log(err)
       })
@@ -52,10 +57,11 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
   .loginbox{
     border-radius: 4px;
     width: 400px;
+    height: 400px;
     background: #ffffff;
     margin: 100px auto;
     padding: 40px 40px 30px;

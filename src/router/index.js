@@ -11,6 +11,7 @@ import login from '../page/login'
 import articleManage from '../page/manage/articleManage'
 import editArticle from '../page/article/editArticle'
 import UserCenter from '../components/data/UserCenter'
+import CommentManage from '../page/manage/CommentManage'
 Vue.use(ElementUI)
 Vue.use(VueAxios, axios)
 Vue.use(Router)
@@ -45,6 +46,10 @@ const router = new Router({
       path: '/manage/UserCenter',
       name: 'UserCenter',
       component: UserCenter
+    }, {
+      path: '/manage/CommentManage',
+      name: 'CommentManage',
+      component: CommentManage
     }
   ]
 })

@@ -7,7 +7,7 @@
     <div class="tipInfo">
 <!--      <div style="float: right" class="small-meta"><el-button size="mini"><span class="el-icon-caret-bottom"></span>反对<span style="margin-left: 5px">5</span></el-button></div>-->
       <div style="float: right" class="small-meta"><el-button size="mini" @click="zan()">赞<span style="margin-left: 5px">{{mateInfo.stars}}</span></el-button></div>
-      <div style="float: right" class="small-meta"><el-button size="mini">评论<span style="margin-left: 5px">{{mateInfo.commentNum}}</span></el-button></div>
+      <div style="float: right" class="small-meta"><el-button size="mini">踩<span style="margin-left: 5px">{{mateInfo.commentNum}}</span></el-button></div>
 <!--      <div style="float: right" class="small-meta"><i class="el-icon-milk-tea icon-style"></i>12</div>-->
     </div>
   </div>

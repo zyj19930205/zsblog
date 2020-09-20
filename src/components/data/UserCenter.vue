@@ -20,7 +20,7 @@
         </el-menu-item>
         <el-menu-item index="2">
           <i class="el-icon-menu"></i>
-          <span slot="title" @click="gotoManage">评论管理</span>
+          <span slot="title" @click="gotoComment">评论管理</span>
         </el-menu-item>
         <el-menu-item index="3">
           <i class="el-icon-setting"></i>
@@ -48,7 +48,7 @@
           </div>
           <div class="text item">
             <div class="boxstyle">
-            <p>你已经发表了<span class="importantInfo">9</span>篇文章</p>
+            <p>你已经发表了<span class="importantInfo">{{articleNum}}</span>篇文章</p>
             <p>有<span class="importantInfo">2</span>篇文章获得了超高的点赞数！</p>
             </div>
           </div>
@@ -87,10 +87,10 @@
           </div>
           <div class="text item">
             <div class="boxstyle">
-              <p><el-input placeholder="请输入原本的密码" label="原密码"></el-input></p>
-              <p><el-input placeholder="请输入新密码！"></el-input></p>
-              <p><el-input placeholder="请再输入一次新密码！"></el-input></p>
-              <el-button type="primary" round>确认修改</el-button>
+              <p><el-input placeholder="请输入原本的密码" label="原密码" v-model="input1"></el-input></p>
+              <p><el-input placeholder="请输入新密码！" v-model="newpsd"></el-input></p>
+              <p><el-input placeholder="请再输入一次新密码！" v-model="input2"></el-input></p>
+              <el-button type="primary" round @click="changePsd">确认修改</el-button>
               <el-button type="primary" round>重置</el-button>
             </div>
           </div>
@@ -109,8 +109,27 @@ export default {
   },
   data () {
     return {
-      userImg: tx
+      userImg: tx,
+      articleNum: '',
+      newpsd: '',
+      input1: '',
+      input2: '',
+      user: {
+        id: '',
+        username: '',
+        password: '',
+        nickName: '',
+        fansnum: ''
+      }
     }
+  },
+  created () {
+    this.axios.get('http://localhost:8081/articleNum/1', {
+    }).then((response) => {
+      this.articleNum = response.data
+    }).catch(function (err) {
+      console.log(err)
+    })
   },
   methods: {
     gotoManage () {
@@ -118,6 +137,30 @@ export default {
     },
     gotoUserInfo () {
       this.$router.push('/manage/userCenter')
+    },
+    gotoComment () {
+      this.$router.push('/manage/CommentManage')
+    },
+    changePsd () {
+      let that = this
+      this.axios.post('http://localhost:8081/changePwd', this.user, {
+        params: {
+          id: 1,
+          username: 'qwe1234rt',
+          password: that.newpsd,
+          nickName: '邹大仙',
+          fansnum: '699'
+        }
+      }).then((response) => {
+        that.$message({
+          type: 'success',
+          message: '修改成功！!'
+        })
+        sessionStorage.clear()
+        that.$router.push('/login')
+      }).catch(function (err) {
+        console.log(err)
+      })
     }
   }
 }

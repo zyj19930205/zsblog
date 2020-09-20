@@ -8,7 +8,7 @@
       </div>
       <div class="text item">
         <ul class="hotArticleList">
-          <li v-for="hot in hotart">
+          <li v-for="hot in hotart" @click="getArticle(hot.id)">
             <span v-if="hot.title.length < 10" @click="getArticle(hot.id)"> {{hot.title}}</span>
             <span v-else @click="getArticle(hot.id)"> {{hot.title.slice(0,25)}}...</span>
           </li>
@@ -45,7 +45,7 @@ export default {
         this.show2 = true
       }, 500)
     },
-    getArticle(id){
+    getArticle (id) {
       this.$router.push({
         path: '/articleView',
         query: {
